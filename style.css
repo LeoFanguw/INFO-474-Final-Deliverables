@@ -1,15 +1,10 @@
-.axis-label {
-    text-anchor: middle;
-    font-size: 12px;
-    font-weight: semibold;
+#main{
+    text-align: center;
+    margin-top: 1em;
+    margin-left: 3em;
 }
 
-body {
-    font-family: "Open Sans";
-    margin: 0;
-}
-
-#main {
-    margin: 20px;
+#desbutton{
+    margin-left: 3em;
 }
 
