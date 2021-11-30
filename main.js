@@ -46,7 +46,6 @@ d3.csv('dataset.CSV').then(function(dataset) {
     .entries(dataset)
     .filter(d => d.key !== '');
   
-  console.log(education);
   var orderedData = [];
   for (var i = 0; i < EducationMap.length; i++) {
     var obj = { 
@@ -56,7 +55,6 @@ d3.csv('dataset.CSV').then(function(dataset) {
     console.log()
     orderedData.push(obj);
   };
-  console.log(orderedData);
   
   var maxDomain = d3.max(orderedData,d => d.value);
 
