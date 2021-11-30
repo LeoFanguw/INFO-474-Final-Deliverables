@@ -12,3 +12,8 @@
 #selection {
     display: none;
 }
+
+.country:hover {
+    fill: lightgreen;
+    font-size: 30pt;
+}
