@@ -9,3 +9,10 @@
     display: none;
 }
 
+.bar-text-none {
+    display: none;
+}
+
+.bar-text-shown {
+    display: block;
+}
