@@ -12,18 +12,30 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 // color gradient settings
 const colorGradient = new Gradient();
 
-const pieData = [];
+const titlename = [{location: "40, 450", name: "BIRTH COUNTRY"}, {location: "350, 450", name: "EDUCATION LEVEL"}, {location: "700, 450", name: "WORKSITE CITY"}]
 
 var svg = d3.select('svg');
 d3.csv('dataset.CSV').then(function(dataset) {
   // console.log(dataset);
   let filteredStatus = dataset.filter(element => element.CASE_STATUS == "Denied");
   // console.log(filteredStatus);
-  renderPie(filteredStatus);
+  renderPie(filteredStatus, "#4081c6", "#ffffff", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#1e2761", "#ffffff", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#7a2048", "#ffffff", "WORKSITE_CITY", -470);
+  const titles = svg.selectAll(".title")
+                    .data(titlename)
+                    .enter()
+                    .append("text")
+                    .attr("transform", function(d) {return "translate(" + d.location + ")"})
+                    .attr("class", "title")
+                    .text(function(d) {return d.name})
 });
 
-function renderPie(d) {
-  let filteredArray = d.map(element => element.FOREIGN_WORKER_BIRTH_COUNTRY);
+
+
+function renderPie(d, color1, color2, condition, position) {
+  let pieData = [];
+  let filteredArray = d.map(element => element[condition]);
   for (let item of filteredArray) {
     let dataIndex = pieData.findIndex(function (data) {
       return data.name == item;
@@ -35,8 +47,10 @@ function renderPie(d) {
     }
   }
 
-  const color1 = "#0288D1";
-  const color2 = "#ffffff";
+  pieData = pieData.filter(function(obj) {
+    return obj.value >= 10;
+  });
+
   colorGradient.setMidpoint(pieData.length);
   colorGradient.setGradient(color1, color2);
   let colorScheme = colorGradient.getArray();
@@ -48,14 +62,14 @@ function renderPie(d) {
   for (let i = 0; i < pieData.length; i++) {
     pieData[i].color = colorScheme[i];
   }
-  bakeDonut(pieData);
+  bakeDonut(pieData, position);
 }
 
-function bakeDonut(d) {
+function bakeDonut(d, position) {
   let activeSegment;
   // pie chart setting
   const data = d.sort( (a, b) => b['value'] - a['value']),
-        viewWidth = 500,
+        viewWidth = 680,
         viewHeight = 200,
         svgWidth = viewHeight,
         svgHeight = viewHeight,
@@ -69,13 +83,14 @@ function bakeDonut(d) {
   const max = d3.max(data, (maxData) => maxData.value );
 
   const svg = el.append('svg')
-  .attr('viewBox', `0 0 ${viewWidth + thickness} ${viewHeight + thickness}`)
+  .attr('viewBox', position + ` 30 ${viewWidth + thickness} ${viewHeight + thickness}`)
   .attr('class', 'pie')
   .attr('width', 1000)
   .attr('height', 500);
 
   const g = svg.append('g')
-  .attr('transform', `translate( ${ (svgWidth / 2) + (thickness / 2) }, ${ (svgHeight / 2) + (thickness / 2)})`);
+  .attr('transform', `translate(${ (svgWidth / 2) + (thickness / 2) }, ${ (svgHeight / 2) + (thickness / 2)})`)
+  .attr('class', "position" + position);
 
   const arc = d3.arc()
   .innerRadius(radius - thickness)
@@ -124,25 +139,26 @@ function bakeDonut(d) {
   .attr('d', arc)
   .attr('fill', (fillData, i) => color(fillData.data.name))
   .attr('class', 'data-path')
-  .on('mouseover', function() {
+  .on('click', function() {
     const _thisPath = this,
           parentNode = _thisPath.parentNode;
-
+          
     if (_thisPath !== activeSegment) {
 
       activeSegment = _thisPath;
 
-      const dataTexts = d3.selectAll('.data-text')
+      const dataTexts = d3.selectAll(".position" + position)
+      .selectAll('.data-text')
       .classed('data-text--show', false);
 
-      const paths = d3.selectAll('.data-path')
+      const paths = d3.selectAll(".position" + position).selectAll('.data-path')
       .transition()
-      .duration(250)
+      .duration(200)
       .attr('d', arc);
 
       d3.select(_thisPath)
         .transition()
-        .duration(250)
+        .duration(200)
         .attr('d', arcHover);
 
       const thisDataValue = d3.select(parentNode).select('.data-text__value')
@@ -161,31 +177,4 @@ function bakeDonut(d) {
     }
     this._current = i;
   });
-
-  // label setting
-  // const legendRectSize = 10;
-  // const legendSpacing = 5;
-
-  // const legend = svg.selectAll('.legend')
-  // .data(color.domain())
-  // .enter()
-  // .append('g')
-  // .attr('class', 'legend')
-  // .attr('transform', function(legendData, i) {
-  //   const itemHeight =    legendRectSize + legendSpacing;
-  //   const offset =        legendRectSize * color.domain().length;
-  //   const horz =          svgWidth + 60;
-  //   const vert =          (i * itemHeight) + legendRectSize + (svgHeight - offset) / 2;
-  //   return `translate(${horz}, ${vert})`;
-  // });
-
-  // legend.append('circle')
-  //   .attr('r', legendRectSize / 2)
-  //   .style('fill', color);
-
-  // legend.append('text')
-  //   .attr('x', legendRectSize + legendSpacing)
-  //   .attr('y', legendRectSize - legendSpacing)
-  //   .attr('class', 'legend-text')
-  //   .text( (legendData) => legendData )
 }
