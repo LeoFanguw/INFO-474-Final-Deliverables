@@ -16,9 +16,8 @@ const titlename = [{location: "40, 450", name: "BIRTH COUNTRY"}, {location: "350
 
 var svg = d3.select('svg');
 d3.csv('dataset.CSV').then(function(dataset) {
-  // console.log(dataset);
   let filteredStatus = dataset.filter(element => element.CASE_STATUS == "Denied");
-  // console.log(filteredStatus);
+  // pie color
   renderPie(filteredStatus, "#4081c6", "#ffffff", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
   renderPie(filteredStatus, "#1e2761", "#ffffff", "FOREIGN_WORKER_EDUCATION", -230);
   renderPie(filteredStatus, "#7a2048", "#ffffff", "WORKSITE_CITY", -470);
@@ -48,7 +47,7 @@ function renderPie(d, color1, color2, condition, position) {
   }
 
   pieData = pieData.filter(function(obj) {
-    return obj.value >= 10;
+    return obj.value >= 30;
   });
 
   colorGradient.setMidpoint(pieData.length);
@@ -139,7 +138,7 @@ function bakeDonut(d, position) {
   .attr('d', arc)
   .attr('fill', (fillData, i) => color(fillData.data.name))
   .attr('class', 'data-path')
-  .on('click', function() {
+  .on('mouseover', function() {
     const _thisPath = this,
           parentNode = _thisPath.parentNode;
           

@@ -63,6 +63,7 @@
     }
 }
 
+/* background color */
 #canvas{
     background: linear-gradient(to bottom, #606c88 0%,#3f4c6b 100%);
 }
