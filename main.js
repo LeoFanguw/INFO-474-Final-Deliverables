@@ -1,4 +1,17 @@
+let caseStatus = "Denied";
+let pieDataset = [];
+function changeStatus(status) {
+  let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == status);
+  d3.select("#canvas")
+    .selectAll("svg")
+    .remove()
+  renderPie(filteredStatus, "#4081c6", "#ffffff", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#1e2761", "#ffffff", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#7a2048", "#ffffff", "WORKSITE_CITY", -470);
+}
+
 // popover settings
+
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
@@ -16,7 +29,8 @@ const titlename = [{location: "40, 450", name: "BIRTH COUNTRY"}, {location: "350
 
 var svg = d3.select('svg');
 d3.csv('dataset.CSV').then(function(dataset) {
-  let filteredStatus = dataset.filter(element => element.CASE_STATUS == "Denied");
+  pieDataset = dataset
+  let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == caseStatus);
   // pie color
   renderPie(filteredStatus, "#4081c6", "#ffffff", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
   renderPie(filteredStatus, "#1e2761", "#ffffff", "FOREIGN_WORKER_EDUCATION", -230);
@@ -28,6 +42,11 @@ d3.csv('dataset.CSV').then(function(dataset) {
                     .attr("transform", function(d) {return "translate(" + d.location + ")"})
                     .attr("class", "title")
                     .text(function(d) {return d.name})
+  
+  const notice = svg.append("text")
+                    .text("Notice: to avoid the outliner, value below 30 is erased")
+                    .attr("transform", "translate(300, 530)")
+                    .attr("class", "notice")
 });
 
 
@@ -46,17 +65,15 @@ function renderPie(d, color1, color2, condition, position) {
     }
   }
 
-  pieData = pieData.filter(function(obj) {
-    return obj.value >= 30;
+  pieData.sort(function (a, b) {
+    return b.value - a.value;
   });
+
+  pieData = pieData.slice(0, 20);
 
   colorGradient.setMidpoint(pieData.length);
   colorGradient.setGradient(color1, color2);
   let colorScheme = colorGradient.getArray();
-
-  pieData.sort(function (a, b) {
-    return b.value - a.value;
-  });
 
   for (let i = 0; i < pieData.length; i++) {
     pieData[i].color = colorScheme[i];

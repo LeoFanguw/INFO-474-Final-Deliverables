@@ -15,8 +15,31 @@
             </div>
             <div id="chart" class="col-10">
                 <svg id="canvas" width="1000" height="600" style="border: 1px solid #777;">
-
                 </svg>
+                <div id="card-deck" class="card-group">
+                    <div class="card">
+                        <h5 class="card-header">Status</h5>
+                        <div class="card-body">
+                            <button class="btn btn-secondary" type="button" onclick="changeStatus('Denied')">Denied</button>
+                            <button class="btn btn-secondary" type="button" onclick="changeStatus('Certified')">Certified</button>
+                            <button class="btn btn-secondary" type="button" onclick="changeStatus('Certified-Expired')">Certified-Expired</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Wage</h5>
+                        <div class="card-body">
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Filter</h5>
+                        <div class="card-body">
+                            <button class="btn btn-secondary" type="button">Button</button>
+                            <button class="btn btn-secondary" type="button">Button</button>
+                            <button class="btn btn-secondary" type="button">Button</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="description" class="col-1">
                 <button id="desbutton" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Et voluptatum natus doloremque nulla exercitationem beatae eos nam earum! Culpa atque rem ut unde enim? Aut hic magnam saepe officia earum.">
