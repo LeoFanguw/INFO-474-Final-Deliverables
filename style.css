@@ -62,12 +62,23 @@
 }
 
 #card-deck {
-    width: 80%;
-    position: absolute;
-    left: 40%;
-    transform: translate(-40%, 0);
+    opacity: .9;
+    width: 110%;
+    position: sticky;
+    bottom:0;
+    left: -1.5%;
+    transform: translate(-1.5%, 0);
     margin: 5px;
 }
+
+.invisible {
+    opacity: 0;
+}
+
+#chart button {
+    margin-top: 5px;
+}
+
 @keyframes fadeGraphTextIn {
     from {
         opacity: 0;

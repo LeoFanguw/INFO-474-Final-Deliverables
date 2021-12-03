@@ -1,13 +1,63 @@
 let caseStatus = "Denied";
 let pieDataset = [];
+
+function toggle() {
+  var element = document.getElementById("card-deck");
+  element.classList.toggle("invisible");
+}
+
 function changeStatus(status) {
   let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == status);
   d3.select("#canvas")
     .selectAll("svg")
     .remove()
-  renderPie(filteredStatus, "#4081c6", "#ffffff", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#1e2761", "#ffffff", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#7a2048", "#ffffff", "WORKSITE_CITY", -470);
+
+  d3.selectAll("option")
+    .remove()
+  
+  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
+}
+
+function onSelectionChanged(id) {
+  let select = d3.select(id).node();
+  let selectedValue = select.options[select.selectedIndex].value;
+  let filteredStatus = [];
+
+  d3.select("#canvas")
+    .selectAll("svg")
+    .remove()
+
+  if (id == "#countrySelector") {
+    filteredStatus = pieDataset.filter(element => element.FOREIGN_WORKER_BIRTH_COUNTRY == selectedValue);
+    d3.select('#educationSelector')
+      .selectAll("option")
+      .remove()
+    d3.select('#citySelector')
+      .selectAll("option")
+      .remove()
+  } else if (id == "#educationSelector") {
+    filteredStatus = pieDataset.filter(element => element.FOREIGN_WORKER_EDUCATION == selectedValue);
+    d3.select('#countrySelector')
+      .selectAll("option")
+      .remove()
+    d3.select('#citySelector')
+      .selectAll("option")
+      .remove()
+  } else {
+    filteredStatus = pieDataset.filter(element => element.WORKSITE_CITY == selectedValue);
+    d3.select('#educationSelector')
+      .selectAll("option")
+      .remove()
+    d3.select('#countrySelector')
+      .selectAll("option")
+      .remove()
+  }
+
+  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
 }
 
 // popover settings
@@ -31,10 +81,11 @@ var svg = d3.select('svg');
 d3.csv('dataset.CSV').then(function(dataset) {
   pieDataset = dataset
   let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == caseStatus);
+
   // pie color
-  renderPie(filteredStatus, "#4081c6", "#ffffff", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#1e2761", "#ffffff", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#7a2048", "#ffffff", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
   const titles = svg.selectAll(".title")
                     .data(titlename)
                     .enter()
@@ -60,7 +111,7 @@ function renderPie(d, color1, color2, condition, position) {
     })
     if (dataIndex != -1) {
       pieData[dataIndex].value ++;
-    } else {
+    } else if(item != "") {
       pieData.push({name: item, value: 1, color: "#0288D1"})
     }
   }
@@ -78,6 +129,34 @@ function renderPie(d, color1, color2, condition, position) {
   for (let i = 0; i < pieData.length; i++) {
     pieData[i].color = colorScheme[i];
   }
+
+  let optionsName = pieData.map(element => element.name);
+  if (condition == "FOREIGN_WORKER_BIRTH_COUNTRY") {
+    d3.select("#countrySelector")
+      .selectAll("option")
+      .data(optionsName)
+      .enter()
+      .append("option")
+      .attr("value", function(d) {return d})
+      .text(function(d) {return d});
+  } else if (condition == "FOREIGN_WORKER_EDUCATION") {
+    d3.select("#educationSelector")
+      .selectAll("option")
+      .data(optionsName)
+      .enter()
+      .append("option")
+      .attr("value", function(d) {return d})
+      .text(function(d) {return d});
+  } else {
+    d3.select("#citySelector")
+      .selectAll("option")
+      .data(optionsName)
+      .enter()
+      .append("option")
+      .attr("value", function(d) {return d})
+      .text(function(d) {return d});
+  }
+
   bakeDonut(pieData, position);
 }
 
