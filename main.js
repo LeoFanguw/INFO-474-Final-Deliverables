@@ -15,9 +15,9 @@ function changeStatus(status) {
   d3.selectAll("option")
     .remove()
   
-  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#DB4437", "#ffa600", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#65a765", "#90ee90", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#9165a7", "#cf90ee", "WORKSITE_CITY", -470);
 }
 
 function onSelectionChanged(id) {
@@ -55,9 +55,9 @@ function onSelectionChanged(id) {
       .remove()
   }
 
-  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#DB4437", "#ffa600", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#65a765", "#90ee90", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#9165a7", "#cf90ee", "WORKSITE_CITY", -470);
 }
 
 // popover settings
@@ -83,9 +83,9 @@ d3.csv('dataset.CSV').then(function(dataset) {
   let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == caseStatus);
 
   // pie color
-  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#DB4437", "#ffa600", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#65a765", "#90ee90", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#9165a7", "#cf90ee", "WORKSITE_CITY", -470);
   const titles = svg.selectAll(".title")
                     .data(titlename)
                     .enter()
