@@ -33,13 +33,12 @@ var findvalue = function (country) {
 }
 
 
-d3.csv('dataset.CSV').then(function (dataset) {
+d3.csv('ETA_9089.CSV').then(function (dataset) {
 
   countrydata = d3.nest()
     .key(d => d['COUNTRY_OF_CITIZENSHIP'])
     .rollup(d => d.length)
     .entries(dataset);
-
 
   var color = d3.scaleSequential()
     .domain([0, Math.log(d3.max(countrydata, d => d.value))]) //d3.max(countrydata,d => d.value)
@@ -62,7 +61,6 @@ d3.csv('dataset.CSV').then(function (dataset) {
       .attr('class', 'country')
       .style('fill', function (d) {
         var value = findvalue(d.properties.name);
-        return color(Math.log(value));
       })
       .attr('d', path)
       .append('title')
@@ -77,7 +75,7 @@ d3.csv('dataset.CSV').then(function (dataset) {
 
     const legend_group = svg.append('g')
       .attr('class', 'legend');
-    console.log('What is this' + legend);
+
     legend_group.html(legend.outerHTML)
       .attr('transform', 'translate(20, 10)');
   });
@@ -88,6 +86,7 @@ d3.csv('dataset.CSV').then(function (dataset) {
 // Copyright 2021, Observable Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/color-legend
+// With minor adjustment for the project use
 function Legend(color, {
   title,
   tickSize = 6,
@@ -126,7 +125,6 @@ function Legend(color, {
 
   // Continuous
   if (color.interpolator) {
-    console.log('Sequential yes');
     x = Object.assign(color.copy()
       .interpolator(d3.interpolateRound(marginLeft, width - marginRight)), {
         range() {
@@ -150,7 +148,9 @@ function Legend(color, {
     .call(d3.axisBottom(x)
       .tickSize(tickSize)
       .tickValues(tick_scale)
-      .tickFormat(function(d,i){ return tick_scale[i]; }))
+      .tickFormat(function (d, i) {
+        return tick_scale[i];
+      }))
     .call(tickAdjust)
     .call(g => g.select(".domain").remove())
     .call(g => g.append("text")
