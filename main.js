@@ -1,5 +1,6 @@
 let caseStatus = "Denied";
 let pieDataset = [];
+let filteredStatus = [];
 
 function toggle() {
   var element = document.getElementById("card-deck");
@@ -7,7 +8,8 @@ function toggle() {
 }
 
 function changeStatus(status) {
-  let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == status);
+  
+  filteredStatus = pieDataset.filter(element => element.CASE_STATUS == status);
   d3.select("#canvas")
     .selectAll("svg")
     .remove()
@@ -23,41 +25,42 @@ function changeStatus(status) {
 function onSelectionChanged(id) {
   let select = d3.select(id).node();
   let selectedValue = select.options[select.selectedIndex].value;
-  let filteredStatus = [];
-
-  d3.select("#canvas")
+  if (selectedValue != "---") {
+    let filteredSelection = [];
+    d3.select("#canvas")
     .selectAll("svg")
     .remove()
 
-  if (id == "#countrySelector") {
-    filteredStatus = pieDataset.filter(element => element.FOREIGN_WORKER_BIRTH_COUNTRY == selectedValue);
-    d3.select('#educationSelector')
-      .selectAll("option")
-      .remove()
-    d3.select('#citySelector')
-      .selectAll("option")
-      .remove()
-  } else if (id == "#educationSelector") {
-    filteredStatus = pieDataset.filter(element => element.FOREIGN_WORKER_EDUCATION == selectedValue);
-    d3.select('#countrySelector')
-      .selectAll("option")
-      .remove()
-    d3.select('#citySelector')
-      .selectAll("option")
-      .remove()
-  } else {
-    filteredStatus = pieDataset.filter(element => element.WORKSITE_CITY == selectedValue);
-    d3.select('#educationSelector')
-      .selectAll("option")
-      .remove()
-    d3.select('#countrySelector')
-      .selectAll("option")
-      .remove()
+    if (id == "#countrySelector") {
+      filteredSelection = filteredStatus.filter(element => element.FOREIGN_WORKER_BIRTH_COUNTRY == selectedValue);
+      d3.select('#educationSelector')
+        .selectAll("option")
+        .remove()
+      d3.select('#citySelector')
+        .selectAll("option")
+        .remove()
+    } else if (id == "#educationSelector") {
+      filteredSelection = filteredStatus.filter(element => element.FOREIGN_WORKER_EDUCATION == selectedValue);
+      d3.select('#countrySelector')
+        .selectAll("option")
+        .remove()
+      d3.select('#citySelector')
+        .selectAll("option")
+        .remove()
+    } else {
+      filteredSelection = filteredStatus.filter(element => element.WORKSITE_CITY == selectedValue);
+      d3.select('#educationSelector')
+        .selectAll("option")
+        .remove()
+      d3.select('#countrySelector')
+        .selectAll("option")
+        .remove()
+    }
+  
+    renderPie(filteredSelection, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+    renderPie(filteredSelection, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
+    renderPie(filteredSelection, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
   }
-
-  renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#ecc19c", "#1e847f", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#d9a5b3", "#1868ae", "WORKSITE_CITY", -470);
 }
 
 // popover settings
@@ -80,7 +83,7 @@ const titlename = [{location: "40, 450", name: "BIRTH COUNTRY"}, {location: "350
 var svg = d3.select('svg');
 d3.csv('dataset.CSV').then(function(dataset) {
   pieDataset = dataset
-  let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == caseStatus);
+  filteredStatus = pieDataset.filter(element => element.CASE_STATUS == caseStatus);
 
   // pie color
   renderPie(filteredStatus, "#ff6e40", "#ffc13b", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
@@ -131,6 +134,7 @@ function renderPie(d, color1, color2, condition, position) {
   }
 
   let optionsName = pieData.map(element => element.name);
+  optionsName.unshift("---");
   if (condition == "FOREIGN_WORKER_BIRTH_COUNTRY") {
     d3.select("#countrySelector")
       .selectAll("option")
