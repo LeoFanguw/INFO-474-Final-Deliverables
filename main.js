@@ -15,9 +15,9 @@ function changeStatus(status) {
   d3.selectAll("option")
     .remove()
   
-  renderPie(filteredStatus, "#DB4437", "#ffa600", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#65a765", "#90ee90", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#9165a7", "#cf90ee", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#3F2CAF", "#e9446a", "#edc988", "#607D8B", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#7400b8", "#5390d9", "#56cfe1", "#80ffdb", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#f72585", "#560bad", "#BCF8EC", "#FF8A5B", "WORKSITE_CITY", -470);
 }
 
 function onSelectionChanged(id) {
@@ -55,9 +55,9 @@ function onSelectionChanged(id) {
       .remove()
   }
 
-  renderPie(filteredStatus, "#DB4437", "#ffa600", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#65a765", "#90ee90", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#9165a7", "#cf90ee", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#3F2CAF", "#e9446a", "#edc988", "#607D8B", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#7400b8", "#5390d9", "#56cfe1", "#80ffdb", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#f72585", "#560bad", "#BCF8EC", "#FF8A5B", "WORKSITE_CITY", -470);
 }
 
 // popover settings
@@ -82,10 +82,11 @@ d3.csv('dataset.CSV').then(function(dataset) {
   pieDataset = dataset
   let filteredStatus = pieDataset.filter(element => element.CASE_STATUS == caseStatus);
 
+
   // pie color
-  renderPie(filteredStatus, "#DB4437", "#ffa600", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
-  renderPie(filteredStatus, "#65a765", "#90ee90", "FOREIGN_WORKER_EDUCATION", -230);
-  renderPie(filteredStatus, "#9165a7", "#cf90ee", "WORKSITE_CITY", -470);
+  renderPie(filteredStatus, "#3F2CAF", "#e9446a", "#edc988", "#607D8B", "FOREIGN_WORKER_BIRTH_COUNTRY", 0);
+  renderPie(filteredStatus, "#7400b8", "#5390d9", "#56cfe1", "#80ffdb", "FOREIGN_WORKER_EDUCATION", -230);
+  renderPie(filteredStatus, "#f72585", "#560bad", "#BCF8EC", "#FF8A5B", "WORKSITE_CITY", -470);
   const titles = svg.selectAll(".title")
                     .data(titlename)
                     .enter()
@@ -102,10 +103,10 @@ d3.csv('dataset.CSV').then(function(dataset) {
 
 
 
-function renderPie(d, color1, color2, condition, position) {
+function renderPie(d, color1, color2, color3, color4, condition, position) {
   let pieData = [];
   let filteredArray = d.map(element => element[condition]);
-  for (let item of filteredArray) {
+  for (let item of filteredArray) { 
     let dataIndex = pieData.findIndex(function (data) {
       return data.name == item;
     })
@@ -123,8 +124,9 @@ function renderPie(d, color1, color2, condition, position) {
   pieData = pieData.slice(0, 20);
 
   colorGradient.setMidpoint(pieData.length);
-  colorGradient.setGradient(color1, color2);
+  colorGradient.setGradient(color1, color2, color3, color4);
   let colorScheme = colorGradient.getArray();
+  console.log(colorScheme);
 
   for (let i = 0; i < pieData.length; i++) {
     pieData[i].color = colorScheme[i];
