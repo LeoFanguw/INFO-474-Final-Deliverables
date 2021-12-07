@@ -37,7 +37,7 @@ Our Brainstorm Process: <br>
 https://miro.com/app/board/o9J_liUJhP8=/
 <br>
 
-![Initial Brainstorm](/Branstorm/1.png)
-![Histogram](/Branstorm/2.png)
-![Pie Chart](/Branstorm/3.png)
-![Map](/Branstorm/4.png)
+![Initial Brainstorm](/Branstorm/1.jpg)
+![Histogram](/Branstorm/2.jpg)
+![Pie Chart](/Branstorm/3.jpg)
+![Map](/Branstorm/4.jpg)
