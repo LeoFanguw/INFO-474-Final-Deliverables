@@ -5,14 +5,21 @@
 }
 
 #desbutton{
-    margin-left: 3em;
-    display: none;
+    margin-left: 6rem;
 }
 
-.bar-text-none {
+/* .bar-text-none {
     display: none;
 }
 
 .bar-text-shown {
     display: block;
+} */
+
+#h4{
+    margin: 0 auto;
+}
+
+.ul{
+    text-align: left;
 }
