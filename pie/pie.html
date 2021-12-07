@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applications for Permanent Employment Certification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main" class="container">
+        <div class="row">
+            <div id="selection" class="col-1">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis ad eligendi numquam, dolorum, dolor minus, aliquid obcaecati nemo quo odit doloribus soluta? Aliquid, dolorem illo sed perferendis eius inventore deserunt.
+            </div>
+            <div id="chart" class="col-10">
+                <svg id="canvas" width="1000" height="580" style="border: 1px solid #777;">
+                </svg>
+                <button type="button" class="btn btn-outline-secondary" onclick="toggle()">Show Filter</button>
+                <div id="card-deck" class="card-group invisible">
+                    <div class="card">
+                        <h5 class="card-header">Status</h5>
+                        <div class="card-body">
+                            <button id = "Denied" class="btn btn-secondary status" type="button" onclick="changeStatus('Denied')">Denied</button>
+                            <button id = "Certified" class="btn btn-secondary status" type="button" onclick="changeStatus('Certified')">Certified</button>
+                            <button id = "Certified-Expired" class="btn btn-secondary status" type="button" onclick="changeStatus('Certified-Expired')">Expired</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Birth Country</h5>
+                        <div class="card-body">
+                            <select id="countrySelector" class="form-select" aria-label="Default select" onchange="onSelectionChanged('#countrySelector')">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Education Level</h5>
+                        <div class="card-body">
+                            <select id="educationSelector" class="form-select" aria-label="Default select" onchange="onSelectionChanged('#educationSelector')">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header">Worksite city</h5>
+                        <div class="card-body">
+                            <select id="citySelector" class="form-select" aria-label="Default select" onchange="onSelectionChanged('#citySelector')">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="description" class="col-1">
+                <button id="desbutton" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Et voluptatum natus doloremque nulla exercitationem beatae eos nam earum! Culpa atque rem ut unde enim? Aut hic magnam saepe officia earum.">
+                    Description
+                  </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="node_modules/javascript-color-gradient/src/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="./pie.js"></script>
+</html>

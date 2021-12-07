@@ -1,0 +1,97 @@
+#main{
+    text-align: center;
+    margin-top: 1em;
+    margin-left: 3em;
+}
+
+#desbutton{
+    margin-left: 6rem;
+}
+
+.pie {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* filter: drop-shadow( 0 2px 0px #333 ); */
+}
+
+.data-path:hover {
+    cursor: pointer;
+}
+
+.data-text {
+    transition: transform .2s ease-in-out;
+    fill: #000;
+}
+
+.data-text__value {
+    font-size: 2rem;
+    transform: translateY(-.5rem);
+    opacity: 0;
+}
+
+.data-text__name {
+    font-size: 1rem;
+    transform: translateY(.5rem);
+    opacity: 0;
+}
+
+.data-text--show {
+    transform: translateY(0);
+    animation: fadeGraphTextIn .5s forwards
+  }
+
+.data-text:hover{
+    user-select: none;
+}
+
+.title {
+    font-size: 2rem;
+    /* text-shadow: 0px 2px 0px #333; */
+    fill: #000;
+}
+
+.notice {
+    fill: #000;
+}
+
+.card-body .btn {
+    margin: .3em;
+
+}
+
+#card-deck {
+    opacity: .9;
+    width: 110%;
+    position: sticky;
+    bottom:0;
+    left: -1.5%;
+    transform: translate(-1.5%, 0);
+    margin: 5px;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+#chart button {
+    margin-top: 5px;
+}
+
+@keyframes fadeGraphTextIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* background color */
+#canvas{
+    /* background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, 
+    rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898; */
+    background-color: white;
+    background-blend-mode: multiply,multiply;
+}
