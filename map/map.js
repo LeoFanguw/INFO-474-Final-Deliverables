@@ -2,27 +2,24 @@ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
 })
-
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-
 var svg = d3.select('svg');
-
 var svgWidth = +svg.attr('width');
 var svgHeight = +svg.attr('height');
-
 // import color scale
 var accent = d3.scaleOrdinal(d3.schemeBuGn);
-
 const projection = d3.geoMercator().scale(140)
   .translate([svgWidth / 2, svgHeight / 1.4]);
 const path = d3.geoPath(projection);
 
+const g = svg.append('g');
 
 
 var findvalue = function (country) {
+  
 
   for (var i = 0; i < countrydata.length; i++) {
     if (country.toUpperCase() === countrydata[i].key.toUpperCase()) {
@@ -31,18 +28,18 @@ var findvalue = function (country) {
   }
   return 0; // Dummy
 }
-
-
-d3.csv('ETA_9089.csv').then(function (dataset) {
-
+d3.csv('dataset.CSV').then(function (dataset) {
   countrydata = d3.nest()
     .key(d => d['COUNTRY_OF_CITIZENSHIP'])
     .rollup(d => d.length)
     .entries(dataset);
 
+  console.log(d3.schemeBuGn);
+
   var color = d3.scaleSequential()
-    .domain([0, Math.log(d3.max(countrydata, d => d.value))]) //d3.max(countrydata,d => d.value)
-    .interpolator(d3.interpolateBlues);
+	  .domain([0, Math.log(d3.max(countrydata,d => d.value))]) //d3.max(countrydata,d => d.value)
+	  .interpolator(d3.interpolateBlues);
+
 
 
   d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(data => {
@@ -61,6 +58,7 @@ d3.csv('ETA_9089.csv').then(function (dataset) {
       .attr('class', 'country')
       .style('fill', function (d) {
         var value = findvalue(d.properties.name);
+        return color(Math.log(value));
       })
       .attr('d', path)
       .append('title')
@@ -75,7 +73,7 @@ d3.csv('ETA_9089.csv').then(function (dataset) {
 
     const legend_group = svg.append('g')
       .attr('class', 'legend');
-
+    console.log('What is this' + legend);
     legend_group.html(legend.outerHTML)
       .attr('transform', 'translate(20, 10)');
   });
@@ -86,7 +84,6 @@ d3.csv('ETA_9089.csv').then(function (dataset) {
 // Copyright 2021, Observable Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/color-legend
-// With minor adjustment for the project use
 function Legend(color, {
   title,
   tickSize = 6,
@@ -141,6 +138,7 @@ function Legend(color, {
       .attr("xlink:href", ramp(color.interpolator()).toDataURL());
   }
 
+
   var tick_scale = [0, 10, 100, 1000, 10000, 46196];
   svg.append("g")
     .attr('class', 'scale_group')
@@ -148,9 +146,7 @@ function Legend(color, {
     .call(d3.axisBottom(x)
       .tickSize(tickSize)
       .tickValues(tick_scale)
-      .tickFormat(function (d, i) {
-        return tick_scale[i];
-      }))
+      .tickFormat(function(d,i){ return tick_scale[i]; }))
     .call(tickAdjust)
     .call(g => g.select(".domain").remove())
     .call(g => g.append("text")
@@ -164,4 +160,4 @@ function Legend(color, {
       .text(title));
 
   return svg.node();
-}
+} 
