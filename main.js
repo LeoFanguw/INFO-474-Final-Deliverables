@@ -39,7 +39,7 @@ function findmatch(key, json) {
   return "";   // dummy return;
 }
 
-d3.csv('dataset.CSV').then(function (dataset) {
+d3.csv('ETA_9089.csv').then(function (dataset) {
   education = d3.nest()
     .key(d => d['MINIMUM_EDUCATION'])
     .rollup(d => d.length)
@@ -52,7 +52,6 @@ d3.csv('dataset.CSV').then(function (dataset) {
       key: EducationMap[i],
       value: findmatch(EducationMap[i], education)
     };
-    console.log()
     orderedData.push(obj);
   };
 

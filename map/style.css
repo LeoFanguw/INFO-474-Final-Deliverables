@@ -1,9 +1,32 @@
 #main{
-    text-align: center;
-    margin-top: 1em;
+    margin-top: 20px;
     margin-left: 3em;
 }
 
 .country:hover {
     fill: lightgreen;
 }
+
+ul {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+}
+
+.btn {
+    width: 120px;
+}
+.col-1 {
+    margin-right: 50px;
+    width: 160px;
+}
+
+.col-10 {
+    overflow: hidden;
+}
+
+svg {
+    display: block;
+    margin-left: 100px;
+}
+

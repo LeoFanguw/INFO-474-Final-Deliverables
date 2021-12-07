@@ -1,6 +1,6 @@
-#main{
-    text-align: center;
-    margin-top: 1em;
+#main {
+    text-align: left;
+    margin-top: 20px;
     margin-left: 3em;
 }
 
@@ -12,10 +12,39 @@
     display: block;
 }
 
-#h4{
-    margin: 0 auto;
+
+.country:hover {
+    fill: lightgreen;
 }
 
-.ul{
+ul {
     text-align: left;
+    list-style-type: none;
+    padding: 0;
 }
+
+#desbutton1 {
+    display: none;
+}
+
+#desbutton2 {
+    display: none;
+}
+
+.btn {
+    width: 120px;
+}
+.col-1 {
+    margin-right: 50px;
+    width: 160px;
+}
+
+.col-10 {
+    overflow: hidden;
+}
+
+svg {
+    display: block;
+    margin-left: 100px;
+}
+
