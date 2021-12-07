@@ -6,7 +6,7 @@ Project Goal: This project aims to create visualizations for the ETA-9089 datase
  
 [Our Dataset](./dataset.CSV): Permanent residency cards, also known as green cards, are proof of documents that allow foreign citizens to live and travel freely in the U.S. One of the pathways to apply for a permanent residency card is through legal employment. The most important process of employment-based immigration is to obtain a permanent labor certification through filing an ETA 9089 form. This form must prove that the employer has made a faithful effort to hire a U.S. citizen for the position.
  
-[Our Processed Dataset](./ETA_9089.CSV):The dataset, downloaded from the U.S. Department of Labor website, tracks one of the pathways to apply for a green card through H1B, also known as the work visa. It contains administrative data for the Permanent Employment Certification ETA-9089 Application for all applicants in 2020. It has 154 columns and 94019 rows. For the interest of the analysis, 22 columns are selected, demonstrated in the table below:
+[Our Processed Dataset](./ETA_9089.csv): The dataset, downloaded from the U.S. Department of Labor website, tracks one of the pathways to apply for a green card through H1B, also known as the work visa. It contains administrative data for the Permanent Employment Certification ETA-9089 Application for all applicants in 2020. It has 154 columns and 94019 rows. For the interest of the analysis, 22 columns are selected, demonstrated in the table below:
  
 | ATTRIBUTES | ITEMS |
 |  :----:  | :----:  |
@@ -33,3 +33,11 @@ Project Goal: This project aims to create visualizations for the ETA-9089 datase
 | FOREIGN_WORKER_EDUCATION  | High School’, ‘None’, ‘Master’s, ‘Bachelor’s, ‘Other’, ‘Doctorate’, ‘Associate’s |
 | FOREIGN_WORK_INFO_MAJOR  | *9397 majors ex. ‘Computer Science’ |
 
+Our Brainstorm Process: <br>
+https://miro.com/app/board/o9J_liUJhP8=/
+<br>
+
+![Initial Brainstorm](/Branstorm/1.png)
+![Histogram](/Branstorm/2.png)
+![Pie Chart](/Branstorm/3.png)
+![Map](/Branstorm/4.png)
