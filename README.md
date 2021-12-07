@@ -35,9 +35,8 @@ Project Goal: This project aims to create visualizations for the ETA-9089 datase
 
 Our Brainstorm Process: <br>
 https://miro.com/app/board/o9J_liUJhP8=/
-<br>
 
-![Initial Brainstorm](/Brainstorm/1.jpg)
-![Histogram](/Brainstorm/2.jpg)
-![Pie Chart](/Brainstorm/3.jpg)
-![Map](/Brainstorm/4.jpg)
+![Initial Brainstorm][./Brainstorm/1.jpg]
+![Histogram][./Brainstorm/2.jpg]
+![Pie Chart][./Brainstorm/3.jpg]
+![Map][./Brainstorm/4.jpg]
