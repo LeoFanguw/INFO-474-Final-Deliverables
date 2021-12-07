@@ -4,8 +4,12 @@
     margin-left: 3em;
 }
 
+#selection {
+    z-index: 5;
+  }
+
 #desbutton{
-    margin-left: 6rem;
+    margin-left: 3rem;
 }
 
 .pie {
