@@ -28,13 +28,12 @@ var findvalue = function (country) {
   }
   return 0; // Dummy
 }
-d3.csv('dataset.CSV').then(function (dataset) {
+d3.csv('ETA_9089.csv').then(function (dataset) {
   countrydata = d3.nest()
     .key(d => d['COUNTRY_OF_CITIZENSHIP'])
     .rollup(d => d.length)
     .entries(dataset);
 
-  console.log(d3.schemeBuGn);
 
   var color = d3.scaleSequential()
 	  .domain([0, Math.log(d3.max(countrydata,d => d.value))]) //d3.max(countrydata,d => d.value)
