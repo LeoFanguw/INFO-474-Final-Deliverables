@@ -6,9 +6,9 @@ Projecet Page: https://leofanguw.github.io/INFO-474-Final-Deliverables/
  
 Project Goal: This project aims to create visualizations for the ETA-9089 dataset, which was provided by the U.S. Department of Labor. The target audience includes prospective/current foreign applicants, U.S. policymakers, immigration lawyers, and company human resource departments, etc, who seek key insights assisting themselves or their stakeholders to improve the application or immigration process.
  
-[Our Dataset](./ETA_9089.csv): Permanent residency cards, also known as green cards, are proof of documents that allow foreign citizens to live and travel freely in the U.S. One of the pathways to apply for a permanent residency card is through legal employment. The most important process of employment-based immigration is to obtain a permanent labor certification through filing an ETA 9089 form. This form must prove that the employer has made a faithful effort to hire a U.S. citizen for the position.
+[Our Dataset](./ETA_9089.csv): Permanent residency cards, also known as green cards, are proof of documents that allow foreign citizens to live and travel freely in the U.S. One of the pathways to apply for a permanent residency card is through legal employment. The most important process of employment-based immigration is to obtain a permanent labor certification through filing an ETA 9089 form. This form must prove that the employer has made a faithful effort to hire a U.S. citizen for the position. The dataset, downloaded from the U.S. Department of Labor website, tracks one of the pathways to apply for a green card through H1B, also known as the work visa. It contains administrative data for the Permanent Employment Certification ETA-9089 Application for all applicants in 2020. It has 154 columns and 94019 rows.
  
-[Our Processed Dataset](./dataset.CSV): The dataset, downloaded from the U.S. Department of Labor website, tracks one of the pathways to apply for a green card through H1B, also known as the work visa. It contains administrative data for the Permanent Employment Certification ETA-9089 Application for all applicants in 2020. It has 154 columns and 94019 rows. For the interest of the analysis, 22 columns are selected, demonstrated in the table below:
+[Our Processed Dataset](./dataset.CSV): To achieve our goal, we decided to create a comprehensive overview of the applicants’ demographic composition. The prospective ETA-9089 applicants could use this data visualization model to identify majors, job positions, companies, and cities that have the highest certifying rate for ETA 9089. This dataset can help them discover job positions that demand foreign employees and the business market, improving the company’s overall competitiveness. For the interest of the analysis, 22 columns are selected, demonstrated in the table below:
  
 | ATTRIBUTES | ITEMS |
 |  :----:  | :----:  |
@@ -37,9 +37,6 @@ Project Goal: This project aims to create visualizations for the ETA-9089 datase
 
 Our Brainstorm Process: <br>
 https://miro.com/app/board/o9J_liUJhP8=/
-
-<br>
-
 ![Initial Brainstorm](./Brainstorm/1.jpg)
 ![Histogram](./Brainstorm/2.jpg)
 ![Pie Chart](./Brainstorm/3.jpg)
