@@ -33,7 +33,7 @@ var findvalue = function (country) {
 }
 
 
-d3.csv('ETA_9089.CSV').then(function (dataset) {
+d3.csv('ETA_9089.csv').then(function (dataset) {
 
   countrydata = d3.nest()
     .key(d => d['COUNTRY_OF_CITIZENSHIP'])
