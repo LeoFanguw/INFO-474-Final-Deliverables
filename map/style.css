@@ -13,12 +13,9 @@ ul {
     padding: 0;
 }
 
-.btn {
-    width: 120px;
-}
 .col-1 {
-    margin-right: 50px;
-    width: 160px;
+    margin-right: 0;
+    width: 16%;
 }
 
 .col-10 {

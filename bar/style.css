@@ -1,0 +1,39 @@
+#main {
+    margin-top: 20px;
+    margin-left: 3em;
+}
+
+.bar-text-none {
+    display: none;
+}
+
+.bar-text-shown {
+    display: block;
+}
+
+
+ul {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+}
+
+.col-1 {
+    margin-right: 0;
+    width: 16%;
+}
+
+.col-10 {
+    overflow: hidden;
+}
+
+svg {
+    display: block;
+    margin-left: 100px;
+}
+
+p {
+    font-size: 11pt;
+}
+
+
