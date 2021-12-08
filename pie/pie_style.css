@@ -102,9 +102,6 @@ ul {
 }
 
 
-
-
-
 .btn {
     width: 120px;
 }
@@ -120,4 +117,8 @@ ul {
 svg {
     display: block;
     margin-left: 70px;
+}
+
+p {
+    font-size: 11pt;
 }

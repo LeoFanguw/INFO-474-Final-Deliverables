@@ -72,7 +72,6 @@ d3.csv('ETA_9089.csv').then(function (dataset) {
 
     const legend_group = svg.append('g')
       .attr('class', 'legend');
-    console.log('What is this' + legend);
     legend_group.html(legend.outerHTML)
       .attr('transform', 'translate(20, 10)');
   });

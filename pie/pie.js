@@ -106,7 +106,7 @@ function onSelectionChanged(id) {
       .text(function (d) { return d.name })
 
     const notice = svg.append("text")
-      .text("Notice: to avoid the outliner, value below 30 is erased")
+      .text("Notice: to avoid the outliner, value below 20 is erased")
       .attr("transform", "translate(300, 530)")
       .attr("class", "notice")
   });
