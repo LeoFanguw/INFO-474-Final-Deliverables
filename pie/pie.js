@@ -106,8 +106,12 @@ function onSelectionChanged(id) {
       .text(function (d) { return d.name })
 
     const notice = svg.append("text")
-      .text("Notice: to avoid the outliner, value below 20 is erased")
-      .attr("transform", "translate(300, 530)")
+      .text("To optimize visualization & UX, value below 20 is removed")
+      .attr("transform", "translate(30, 560)")
+      .attr("class", "notice")
+    const notice2 = svg.append("text")
+      .text("Note: Default is set for denied status[view filter to see complete list]. ")
+      .attr("transform", "translate(30, 540)")
       .attr("class", "notice")
   });
 
