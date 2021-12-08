@@ -9,8 +9,9 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 })
 
 var svg = d3.select('svg');
-var svgWidth = +svg.attr('width');
-var svgHeight = +svg.attr('height');
+var svgWidth = +svg.attr('viewBox').split(" ")[2];
+var svgHeight = +svg.attr('viewBox').split(" ")[3];
+
 
 // Compute padding dimensions
 var padding = { t: 60, r: 120, b: 60, l: 120 };

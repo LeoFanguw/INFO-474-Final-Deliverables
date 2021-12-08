@@ -1,6 +1,5 @@
 #main {
     margin-top: 20px;
-    margin-left: 3em;
 }
 
 .bar-text-none {
@@ -29,16 +28,25 @@ ul {
 
 svg {
     display: block;
-    margin-left: 100px;
+    width: 80%;
+    margin-left: 90px;
 }
 
 p {
     font-size: 11pt;
 }
 
-ul:before{
-    content:attr(aria-label);
-    font-size:120%;
-    font-weight:bold;
-    margin-left:-15px;
+.col-1 {
+    margin-right: 0;
+    width: 16%;
+}
+
+.col-10 {
+    overflow: hidden;
+}
+
+.row {
+    margin: 0 auto;
+    position: relative;
+    max-width: 1440px;
 }

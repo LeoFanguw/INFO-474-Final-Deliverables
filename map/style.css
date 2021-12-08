@@ -1,6 +1,5 @@
 #main{
     margin-top: 20px;
-    margin-left: 3em;
 }
 
 .country:hover {
@@ -30,3 +29,10 @@ svg {
 p {
     font-size: 11pt;
 }
+
+.row {
+    margin: 0 auto;
+    position: absolute;
+    max-width: 1440px;
+}
+

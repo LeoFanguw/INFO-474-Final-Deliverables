@@ -1,6 +1,11 @@
 #main{
     margin-top: 20px;
-    margin-left: 3em;
+}
+
+.row {
+    margin: 0 auto;
+    position: absolute;
+    max-width: 1440px;
 }
 
 ul {
@@ -107,11 +112,13 @@ ul {
 }
 .col-1 {
     margin-right: 0;
-    width: 16%;
+    width: 20%;
 }
 
 .col-10 {
     overflow: hidden;
+    float: right;
+    width: 70%;
 }
 
 svg {

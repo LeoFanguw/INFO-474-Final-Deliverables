@@ -7,11 +7,12 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 var svg = d3.select('svg');
-var svgWidth = +svg.attr('width');
-var svgHeight = +svg.attr('height');
+var svgWidth = +svg.attr('viewBox').split(" ")[2]; // Next time teach this: Dynamic Resizing with ViewBox
+var svgHeight = +svg.attr('viewBox').split(" ")[3];
+
 // import color scale
 var accent = d3.scaleOrdinal(d3.schemeBuGn);
-const projection = d3.geoMercator().scale(140)
+const projection = d3.geoMercator().scale(120)
   .translate([svgWidth / 2, svgHeight / 1.4]);
 const path = d3.geoPath(projection);
 
@@ -26,7 +27,7 @@ var findvalue = function (country) {
       return countrydata[i].value;
     }
   }
-  return 0; // Dummy
+  return 0; //return 0 for country with no ETA 9089 applications
 }
 d3.csv('ETA_9089.csv').then(function (dataset) {
   countrydata = d3.nest()
@@ -73,7 +74,7 @@ d3.csv('ETA_9089.csv').then(function (dataset) {
     const legend_group = svg.append('g')
       .attr('class', 'legend');
     legend_group.html(legend.outerHTML)
-      .attr('transform', 'translate(20, 10)');
+      .attr('transform', 'translate(10, 10)');
   });
 
 
@@ -85,8 +86,8 @@ d3.csv('ETA_9089.csv').then(function (dataset) {
 function Legend(color, {
   title,
   tickSize = 6,
-  width = 320,
-  height = 50 + tickSize,
+  width = 220,
+  height = 45 + tickSize,
   marginTop = 18,
   marginRight = 0,
   marginBottom = 16 + tickSize,
@@ -153,7 +154,7 @@ function Legend(color, {
       .attr("fill", "currentColor")
       .attr("text-anchor", "start")
       .attr("font-weight", "bold")
-      .attr('font-size', '9pt')
+      .attr('font-size', '7pt')
       .attr("class", "title")
       .text(title));
 
