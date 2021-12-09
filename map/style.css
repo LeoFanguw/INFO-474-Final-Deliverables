@@ -6,6 +6,10 @@
     cursor: pointer;
 }
 
+.country:hover {
+    stroke: rgb(150, 180, 194);
+}
+
 ul {
     text-align: left;
     list-style-type: none;
