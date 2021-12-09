@@ -2,8 +2,8 @@
     margin-top: 20px;
 }
 
-.country:hover {
-    fill: lightgreen;
+.country {
+    cursor: pointer;
 }
 
 ul {
